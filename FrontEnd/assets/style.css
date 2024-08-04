@@ -82,7 +82,8 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: #1D6154;
+	margin-bottom: 20px; /* Espace entre le titre et les champs de saisie */
 }
 nav ul {
 	display: flex;
@@ -186,3 +187,149 @@ footer nav ul {
 	margin: 2em
 }
 
+
+/* CSS pour les filtres */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: #1D6154;
+    background-color: transparent;
+    border: 2px solid #1D6154;
+    margin: 0 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filters button:hover {
+    background-color: #1D6154;
+    color: white;
+}
+
+	/* CSS pour la page de connexion */
+
+	body {
+		background-color: #fdf7f0;
+	}
+	
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 0;
+		border-bottom: 1px solid #ddd;
+		margin-bottom: 20px;
+	}
+	
+	header h1 {
+		margin: 0;
+		font-family: 'Syne', sans-serif;
+		font-size: 22px;
+		font-weight: 800;
+		color: #B1663C;
+	}
+	
+	header h1 span {
+		display: block;
+		font-family: 'Work Sans', sans-serif;
+		font-size: 10px;
+		letter-spacing: 0.1em;
+	}
+	
+	header nav ul {
+		display: flex;
+		list-style-type: none;
+	}
+	
+	header nav li {
+		margin-left: 20px;
+		font-size: 16px;
+	}
+	
+	header nav a {
+		text-decoration: none;
+		color: #1D6154;
+	}
+	
+	header nav a:hover {
+		color: #B1663C;
+	}
+	
+	.login-container {
+		background-color: transparent;
+		padding: 40px;
+		border-radius: 0;
+		box-shadow: none;
+		width: 400px;
+		text-align: center;
+		margin: 100px auto;
+	}
+	
+	.form-group {
+		margin-bottom: 20px; /* Espace entre chaque groupe de champs */
+	}
+	
+	.form-group input {
+		width: 100%;
+		padding: 10px;
+		font-size: 16px;
+		border: none;
+		border-radius: 5px;
+		box-sizing: border-box;
+		background-color: white;
+	}
+	
+	button {
+		width: 100%;
+		padding: 10px;
+		background-color: #1d6154;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-family: 'Syne', sans-serif;
+		font-size: 16px;
+		margin-top: 20px; /* Espace au-dessus du bouton de soumission */
+		margin-bottom: 20px;
+	}
+	
+	button:hover {
+		background-color: #15503d;
+	}
+	
+	a {
+		color: #1d6154;
+		text-decoration: none;
+		font-family: 'Work Sans', sans-serif;
+		font-size: 14px;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	footer {
+		text-align: center;
+		padding: 20px 0;
+		border-top: 1px solid #ddd;
+		margin-top: 20px;
+	}
+	
+	footer nav ul {
+		display: flex;
+		justify-content: center;
+		list-style-type: none;
+	}
+	
+	footer nav li {
+		margin: 0 10px;
+		font-size: 14px;
+	}
