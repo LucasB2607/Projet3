@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryView = document.getElementById('gallery-view');
     const addPhotoView = document.getElementById('add-photo-view');
     const openModalBtn = document.getElementById('open-modal-btn');
-    const closeModalBtn = document.getElementsByClassName('close')[0];
     const backArrow = document.getElementsByClassName('back-arrow')[0];
     const modal = document.getElementById('modal');
     const projectsGallery = document.getElementById('projects-gallery');
@@ -53,17 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Fonction pour ajouter des événements de fermeture aux boutons
+    function attachCloseEvents() {
+        const closeModalBtns = document.querySelectorAll('.close'); // Sélectionne toutes les croix de fermeture
+        console.log(closeModalBtns); // Vérifiez combien d'éléments sont sélectionnés
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                resetForm();
+                modal.style.display = 'none';
+            });
+        });
+    }
+
     openModalBtn.addEventListener('click', () => {
         console.log('Open modal button clicked');
         modal.style.display = 'block';
         galleryView.style.display = 'block';
         addPhotoView.style.display = 'none';
         afficherProjetsDansModale(); // Affiche les projets à partir du tableau local
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-        resetForm();
-        modal.style.display = 'none';
+        attachCloseEvents(); // Attachez les événements après l'affichage de la modale
     });
 
     backArrow.addEventListener('click', () => {
@@ -74,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addPhotoBtn.addEventListener('click', () => {
         galleryView.style.display = 'none';
         addPhotoView.style.display = 'block';
+        attachCloseEvents(); // Attachez les événements après l'affichage de la vue d'ajout de photo
     });
 
     imageInput.addEventListener('change', function(event) {

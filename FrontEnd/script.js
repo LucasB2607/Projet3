@@ -149,6 +149,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Fonction pour gérer le lien login/logout
+    function updateLoginLogoutLink() {
+        const loginLogoutLink = document.getElementById('login-logout-link');
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            loginLogoutLink.textContent = 'logout';
+            loginLogoutLink.removeAttribute('href');
+            loginLogoutLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                // Supprime le token de l'utilisateur pour le déconnecter
+                localStorage.removeItem('token');
+                // Redirige l'utilisateur vers la page d'accueil
+                window.location.href = 'index.html';
+            });
+        } else {
+            loginLogoutLink.textContent = 'login';
+            loginLogoutLink.setAttribute('href', 'login.html');
+        }
+    }
+
     // Fonction pour ouvrir la modale
     function openModal() {
         console.log('Ouverture de la modale ou activation du mode édition');
@@ -183,4 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProjetsFromAPI();
     fetchCategoriesFromAPI();
     toggleElementsForLoggedInUser();
+    updateLoginLogoutLink(); // Mise à jour du lien login/logout lors du chargement de la page
 });

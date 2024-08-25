@@ -407,6 +407,7 @@ footer nav li {
 }
 
 .modal-content {
+    position: relative;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -418,14 +419,19 @@ footer nav li {
 }
 
 .modal-title {
-    text-align: center;
-    color: black;
+    font-family: 'Work Sans', sans-serif; /* Même police que le corps du texte */
+    font-weight: 300; /* Poids du texte normal */
+    font-size: 25px; /* Ajustez cette taille selon les besoins */
+    color: #000; /* Couleur noire pour le texte */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 50px;
+    margin-top: 40px;
 }
 
 .close {
-    color: #aaa;
+    color: #000000;
     float: right;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -501,18 +507,20 @@ footer nav li {
 }
 
 #add-photo-btn {
-    background-color: #1d6154;
-    color: white;
+    font-family: 'Work Sans', sans-serif; /* Applique la même police que "Galerie photo" */
+    font-weight: 400; /* Poids du texte normal */
+    font-size: 16px; /* Taille de police similaire */
+    color: #fff; /* Couleur du texte blanche pour contraster avec le fond */
+    background-color: #1d6154; /* Fond vert */
     border: none;
-    padding: 10px 20px;
+    padding: 10px 40px; /* Augmenter le padding latéral pour élargir le bouton */
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    margin-top: 20px;
+    text-align: center;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto; /* Centrer le bouton et ajouter un espace au-dessus */
+    width: auto; /* Permet au bouton de s'ajuster en fonction du contenu */
+    white-space: nowrap; /* Empêche le texte de se couper sur deux lignes */
 }
 
 #add-photo-btn:hover {
@@ -545,6 +553,20 @@ footer nav li {
 
 .modal-view {
     display: none;
+}
+
+.modal-content .close {
+    position: absolute; /* Positionnement absolu pour placer la croix par rapport à .modal-content */
+    top: 15px; /* Positionnez légèrement en dessous du bord supérieur */
+    right: 30px; /* Légèrement à l'intérieur du bord droit */
+    color: #000; /* Couleur noire pour plus de visibilité */
+    font-size: 20px; /* Taille de la croix */
+    cursor: pointer;
+    z-index: 1001; /* S'assurer que la croix est au-dessus des autres éléments */
+}
+
+.modal-view .close:hover {
+    color: #000;
 }
 
 #gallery-view {

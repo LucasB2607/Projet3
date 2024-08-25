@@ -25,7 +25,7 @@
     </nav>
 </header>
 <main>
-    <div class="login-container">
+    <div class="login-container container"> <!-- Ajout de la classe "container" pour uniformiser -->
         <h2>Log In</h2>
         <form id="login-form">
             <div class="form-group">
@@ -37,8 +37,10 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit">Se connecter</button>
-            <a href="#">Mot de passe oublié</a>
-            <p id="error-message" style="color: red; display: none;"></p> <!-- Ajout du message d'erreur -->
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="#" style="text-decoration: underline;">Mot de passe oublié</a>
+            </div>
+            <p id="error-message" style="color: red; display: none;"></p>
         </form>
     </div>
 </main>
