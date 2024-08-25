@@ -157,12 +157,11 @@ nav ul li a:hover {
 }
 
 .gallery img {
-    width: 100%;
-    height: auto;
-    max-height: 407px;
-    object-fit: cover;
-    object-position: center;
-    margin-bottom: 10px; /* Plus d'espace entre les images et les titres */
+    width: 100% !important;
+    height: 407px !important; /* Force une hauteur fixe */
+    object-fit: cover !important;
+    object-position: center !important;
+    margin-bottom: 10px !important;
 }
 
 #contact {

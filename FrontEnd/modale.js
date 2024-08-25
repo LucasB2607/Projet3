@@ -4,15 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryView = document.getElementById('gallery-view');
     const addPhotoView = document.getElementById('add-photo-view');
     const openModalBtn = document.getElementById('open-modal-btn');
+    const editModeLink = document.getElementById('edit-mode-link');
     const backArrow = document.getElementsByClassName('back-arrow')[0];
     const modal = document.getElementById('modal');
-    const projectsGallery = document.getElementById('projects-gallery');
     const addPhotoBtn = document.getElementById('add-photo-btn');
     const form = document.getElementById('add-project-form');
     const errorMessage = document.getElementById('error-message');
     const imageInput = document.getElementById('image');
     const imagePreview = document.getElementById('image-preview');
     const uploadPhotoLabel = document.querySelector('.upload-photo-label');
+
+    console.log('openModalBtn:', openModalBtn);
 
     let allProjects = JSON.parse(localStorage.getItem('projects')) || []; // Charger les projets depuis le localStorage
 
@@ -26,8 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les projets dans la galerie de la modale
     function afficherProjetsDansModale() {
+        console.log('afficherProjetsDansModale est appelée');
         console.log('Displaying projects in modal:', allProjects);
+        const projectsGallery = document.getElementById('projects-gallery');
+        console.log('projectsGallery après ouverture de la modale:', projectsGallery);
         projectsGallery.innerHTML = '';
+
         allProjects.forEach(projet => {
             console.log('Creating element for:', projet);
             const projetElement = document.createElement('div');
@@ -38,15 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             projectsGallery.appendChild(projetElement);
 
+            // Attacher l'événement de suppression après avoir ajouté l'élément au DOM
             const deleteIcon = projetElement.querySelector('.delete-icon');
             deleteIcon.addEventListener('click', () => {
                 const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
                 if (confirmation) {
                     allProjects = allProjects.filter(p => p.id !== projet.id);
                     localStorage.setItem('projects', JSON.stringify(allProjects)); // Mise à jour dans le localStorage
-                    afficherProjetsDansModale();
+                    afficherProjetsDansModale(); // Rafraîchir la liste après suppression
                     const eventUpdateGallery = new CustomEvent('updateGallery');
-                    document.dispatchEvent(eventUpdateGallery);
+                    document.dispatchEvent(eventUpdateGallery); // Mise à jour de la galerie principale
                 }
             });
         });
@@ -70,8 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'block';
         galleryView.style.display = 'block';
         addPhotoView.style.display = 'none';
+
+        // Vérifiez l'existence de l'élément projectsGallery après ouverture de la modale
+        const projectsGallery = document.getElementById('projects-gallery');
+        console.log('projectsGallery après ouverture de la modale:', projectsGallery);
+       
         afficherProjetsDansModale(); // Affiche les projets à partir du tableau local
         attachCloseEvents(); // Attachez les événements après l'affichage de la modale
+    });
+
+    // Synchroniser le comportement avec le bouton "Mode édition"
+    editModeLink.addEventListener('click', () => {
+        console.log('Mode édition activé');
+        
+        modal.style.display = 'block';
+        galleryView.style.display = 'block';
+        addPhotoView.style.display = 'none';
+        
+        const projectsGallery = document.getElementById('projects-gallery');
+        console.log('projectsGallery après clic sur "Mode édition":', projectsGallery);
+
+        afficherProjetsDansModale(); // Affiche les projets en mode édition
+        attachCloseEvents(); // Pour gérer la fermeture de la modale
     });
 
     backArrow.addEventListener('click', () => {

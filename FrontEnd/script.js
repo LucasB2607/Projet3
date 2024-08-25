@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 allProjects = await response.json();
                 localStorage.setItem('projects', JSON.stringify(allProjects));
+    
+                // Ajoutez ce log pour vérifier les projets récupérés
+                console.log('Projets récupérés depuis l\'API:', allProjects);
+    
                 afficherGaleriePrincipale();
             } catch (error) {
                 console.error('Erreur lors de la récupération des projets:', error);
@@ -51,25 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les projets dans la galerie principale
     function afficherGaleriePrincipale() {
+        console.log('La fonction afficherGaleriePrincipale est appelée');
+        console.log('Affichage des projets dans la galerie:', allProjects);
         galleryContainer.innerHTML = '';
         allProjects.forEach(projet => {
             const projectElement = document.createElement('div');
             projectElement.classList.add('project-item');
-
+    
             const img = document.createElement('img');
             img.src = projet.imageUrl;
             img.alt = projet.title;
-
+    
             const title = document.createElement('p');
             title.textContent = projet.title;
             title.classList.add('project-title');
-
+    
             projectElement.appendChild(img);
             projectElement.appendChild(title);
-
+    
             galleryContainer.appendChild(projectElement);
         });
-
+    
         applyImageStyles();
     }
 
@@ -190,7 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (editModeLink) {
         editModeLink.addEventListener('click', (event) => {
             event.preventDefault();
-            openModal();
+            console.log('Mode édition activé'); // Ajoutez ce log pour vérifier que le mode édition est activé
+            openModal(); // Ouvre la modale ou active le mode édition
+            afficherGaleriePrincipale(); // Ajoutez cette ligne pour forcer l'affichage de la galerie
         });
     }
 
