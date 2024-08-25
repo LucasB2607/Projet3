@@ -1,8 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
+/* Reset CSS */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -16,197 +12,247 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
+
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/** end reset css**/
-body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-}
-header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
-}
-section {
-	margin: 50px 0
+    content: '';
+    content: none;
 }
 
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/** End reset css **/
+
+body {
+    max-width: 1140px;
+    margin: auto;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0;
+}
+
+section {
+    margin: 50px 0;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #B1663C;
 }
 
 h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154;
-	margin-bottom: 20px; /* Espace entre le titre et les champs de saisie */
+h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: #1D6154;
+    margin-bottom: 20px;
 }
+
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-
-}
-nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
 }
 
-li:hover {
-	color: #B1663C;
+nav ul li {
+    padding: 0 10px;
 }
+
+nav ul li a {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2em;
+    color: #1D6154;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav ul li a:hover {
+    color: #B1663C;
+}
+
 #introduction {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
+
 #introduction figure {
-	flex: 1
+    flex: 1;
 }
+
 #introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+    display: block;
+    margin: auto;
+    width: 80%;
 }
 
 #introduction article {
-	flex: 1
+    width: 50%;
+    padding-right: 180px; 
+    box-sizing: border-box; 
 }
+
 #introduction h2 {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
+
+#portfolio {
+    margin-top: 110px; 
+}
+
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+    text-align: center;
+    margin-bottom: 1em;
 }
+
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
 }
 
 .gallery img {
-	width: 100%;
-
+    width: 100%;
+    height: auto;
+    max-height: 407px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 10px; /* Plus d'espace entre les images et les titres */
 }
+
 #contact {
-	width: 50%;
-margin: auto;
+    width: 50%;
+    margin: auto;
 }
-#contact > * {
-	text-align: center;
 
+#contact::before {
+    content: '';
+    display: block;
+    height: 50px; /* Ajoute de l'espace au-dessus de la section "Contact" */
 }
-#contact h2{
-	margin-bottom: 20px;
+
+#contact > * {
+    text-align: center;
 }
+
+#contact h2 {
+    margin-bottom: 20px;
+}
+
 #contact form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 #contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label {
-	margin: 2em 0 1em 0;
-}
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
+#contact label {
+    margin: 2em 0 1em 0;
+}
+
+#contact textarea {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"] {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
 }
 
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em;
 }
 
-
-/* CSS pour les filtres */
+/* CSS for filters */
 
 .filters {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    gap: 15px; /* Espacement entre les boutons */
 }
 
 .filters button {
-    font-family: 'Syne';
+    font-family: 'Syne', sans-serif;
     font-weight: 700;
     color: #1D6154;
     background-color: transparent;
     border: 2px solid #1D6154;
-    margin: 0 5px;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-align: center;
+    height: 40px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: auto; /* Permet au bouton de s'adapter à la taille du texte */
 }
 
 .filters button:hover {
@@ -214,122 +260,404 @@ footer nav ul {
     color: white;
 }
 
-	/* CSS pour la page de connexion */
+/* CSS for login page */
+body {
+    background-color: #fdf7f0;
+}
 
-	body {
-		background-color: #fdf7f0;
-	}
-	
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 20px 0;
-		border-bottom: 1px solid #ddd;
-		margin-bottom: 20px;
-	}
-	
-	header h1 {
-		margin: 0;
-		font-family: 'Syne', sans-serif;
-		font-size: 22px;
-		font-weight: 800;
-		color: #B1663C;
-	}
-	
-	header h1 span {
-		display: block;
-		font-family: 'Work Sans', sans-serif;
-		font-size: 10px;
-		letter-spacing: 0.1em;
-	}
-	
-	header nav ul {
-		display: flex;
-		list-style-type: none;
-	}
-	
-	header nav li {
-		margin-left: 20px;
-		font-size: 16px;
-	}
-	
-	header nav a {
-		text-decoration: none;
-		color: #1D6154;
-	}
-	
-	header nav a:hover {
-		color: #B1663C;
-	}
-	
-	.login-container {
-		background-color: transparent;
-		padding: 40px;
-		border-radius: 0;
-		box-shadow: none;
-		width: 400px;
-		text-align: center;
-		margin: 100px auto;
-	}
-	
-	.form-group {
-		margin-bottom: 20px; /* Espace entre chaque groupe de champs */
-	}
-	
-	.form-group input {
-		width: 100%;
-		padding: 10px;
-		font-size: 16px;
-		border: none;
-		border-radius: 5px;
-		box-sizing: border-box;
-		background-color: white;
-	}
-	
-	button {
-		width: 100%;
-		padding: 10px;
-		background-color: #1d6154;
-		color: white;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		font-family: 'Syne', sans-serif;
-		font-size: 16px;
-		margin-top: 20px; /* Espace au-dessus du bouton de soumission */
-		margin-bottom: 20px;
-	}
-	
-	button:hover {
-		background-color: #15503d;
-	}
-	
-	a {
-		color: #1d6154;
-		text-decoration: none;
-		font-family: 'Work Sans', sans-serif;
-		font-size: 14px;
-	}
-	
-	a:hover {
-		text-decoration: underline;
-	}
-	
-	footer {
-		text-align: center;
-		padding: 20px 0;
-		border-top: 1px solid #ddd;
-		margin-top: 20px;
-	}
-	
-	footer nav ul {
-		display: flex;
-		justify-content: center;
-		list-style-type: none;
-	}
-	
-	footer nav li {
-		margin: 0 10px;
-		font-size: 14px;
-	}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #B1663C;
+}
+
+header h1 span {
+    display: block;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+header nav li {
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+header nav a {
+    font-family: 'Work Sans', sans-serif !important; /* Police identique au corps du texte */
+    font-size: 16px !important; /* Taille légèrement plus grande */
+    color: black !important; /* Couleur identique au corps du texte */
+    text-decoration: none !important; /* Supprimer le soulignement */
+}
+
+header nav a:hover {
+    color: #B1663C;
+}
+
+header nav img {
+    width: 20px;
+    height: auto;
+}
+
+.login-container {
+    background-color: transparent;
+    padding: 40px;
+    border-radius: 0;
+    box-shadow: none;
+    width: 400px;
+    text-align: center;
+    margin: 100px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+button {
+    width: 150px;
+    padding: 10px;
+    background-color: #1d6154;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #15503d;
+}
+
+a {
+    color: black; /* Text in black */
+    text-decoration: none;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: black;
+    text-align: left;
+}
+
+footer {
+    text-align: right;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+footer nav li {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 630px;
+    height: 688px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.modal-title {
+    text-align: center;
+    color: black;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#projects-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+}
+
+.project-item {
+    position: relative;
+    margin: 5px;
+}
+
+.project-item img {
+    width: 99.5938px;
+    height: 133.328px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.project-item .delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 2px 4px;
+    font-size: 14px;
+}
+
+#edit-mode-link {
+    font-weight: normal; /* Définit le texte en non gras */
+    font-family: 'Work Sans', sans-serif; /* Applique la même police que le corps du texte */
+}
+
+.title-and-edit .edit-link {
+    font-weight: normal; /* Définit le texte en non gras */
+    font-family: 'Work Sans', sans-serif; /* Applique la même police que le corps du texte */
+}
+
+.title-and-edit {
+    display: flex;
+    align-items: baseline; /* Aligne les éléments sur leur ligne de base */
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    margin-bottom: 60px; /* Ajoute de l'espace sous le titre "Mes Projets" */
+}
+
+.title-and-edit h2 {
+    margin-right: 10px;
+}
+
+.edit-link {
+    color: black;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+#add-photo-btn {
+    background-color: #1d6154;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#add-photo-btn:hover {
+    background-color: #15503d;
+}
+
+#edit-mode-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    pointer-events: auto; /* Ajouté pour s'assurer que le clic est possible */
+}
+
+#edit-mode-banner a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#edit-mode-banner a:hover {
+    text-decoration: underline;
+}
+
+.modal-view {
+    display: none;
+}
+
+#gallery-view {
+    display: block;
+}
+
+.back-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #000;
+}
+
+/* Custom styles */
+
+/* Upload photo frame */
+.upload-photo-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #e0ebf5;
+    width: 420px;
+    height: 169px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.upload-photo-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.upload-photo-icon {
+    font-size: 48px;
+    color: #aaa;
+}
+
+.upload-photo-label p {
+    margin: 10px 0 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.upload-photo-label small {
+    display: block;
+    margin-top: 5px;
+    color: #aaa;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#add-project-form input[type="text"],
+#add-project-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#add-project-form button {
+    display: block;
+    width: 150px;
+    margin: 20px auto 0;
+    padding: 10px;
+    background-color: #aaa;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+}
+
+#add-project-form button:hover {
+    background-color: #888;
+}
+
+/* Style for image preview */
+#image-preview {
+    display: none;
+    width: auto;
+    height: 100%;
+    max-height: 169px;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto;
+}
+
+/* Styles pour les images dans la modale */
+#projects-gallery .project-item img {
+    width: 99.5938px;
+    height: 133.328px;
+    object-fit: cover;
+    object-position: center;
+}
