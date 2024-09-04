@@ -1,5 +1,3 @@
-console.log('script.js is running');
-
 document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.querySelector('.gallery');
     const filtersContainer = document.querySelector('.filters');
@@ -15,27 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let allProjects = JSON.parse(localStorage.getItem('projects')) || [];
     let allCategories = [];
 
-    // Fonction pour récupérer les projets depuis l'API (si nécessaire)
+    // Fonction pour récupérer les projets depuis l'API
     async function fetchProjetsFromAPI() {
-        if (allProjects.length === 0) {
-            try {
-                const response = await fetch(apiWorksUrl);
-                if (!response.ok) {
-                    throw new Error(`Erreur: ${response.status}`);
-                }
-                allProjects = await response.json();
-                localStorage.setItem('projects', JSON.stringify(allProjects));
-    
-                // Ajoutez ce log pour vérifier les projets récupérés
-                console.log('Projets récupérés depuis l\'API:', allProjects);
-    
-                afficherGaleriePrincipale();
-            } catch (error) {
-                console.error('Erreur lors de la récupération des projets:', error);
+        try {
+            const response = await fetch(apiWorksUrl);
+            if (!response.ok) {
+                throw new Error(`Erreur: ${response.status}`);
             }
-        } else {
-            console.log('Chargement des projets depuis le localStorage');
-            afficherGaleriePrincipale();
+            allProjects = await response.json();
+            localStorage.setItem('projects', JSON.stringify(allProjects)); // Sauvegarder les projets dans le localStorage
+            afficherGaleriePrincipale();  // Affiche les projets dans la galerie principale
+        } catch (error) {
+            console.error('Erreur lors de la récupération des projets:', error);
         }
     }
 
@@ -47,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Erreur: ${response.status}`);
             }
             allCategories = await response.json();
-            displayFilters();
+            displayFilters();  // Affiche les filtres après récupération des catégories
         } catch (error) {
             console.error('Erreur lors de la récupération des catégories:', error);
         }
@@ -55,28 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les projets dans la galerie principale
     function afficherGaleriePrincipale() {
-        console.log('La fonction afficherGaleriePrincipale est appelée');
-        console.log('Affichage des projets dans la galerie:', allProjects);
         galleryContainer.innerHTML = '';
         allProjects.forEach(projet => {
             const projectElement = document.createElement('div');
             projectElement.classList.add('project-item');
-    
+
             const img = document.createElement('img');
             img.src = projet.imageUrl;
             img.alt = projet.title;
-    
+
             const title = document.createElement('p');
             title.textContent = projet.title;
             title.classList.add('project-title');
-    
+
             projectElement.appendChild(img);
             projectElement.appendChild(title);
-    
+
             galleryContainer.appendChild(projectElement);
         });
-    
-        applyImageStyles();
     }
 
     // Fonction pour afficher les filtres
@@ -87,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allFilter.textContent = 'Tous';
         allFilter.classList.add('filter-btn');
         allFilter.addEventListener('click', () => {
-            afficherGaleriePrincipale();
+            afficherGaleriePrincipale();  // Afficher tous les projets
         });
         filtersContainer.appendChild(allFilter);
 
@@ -103,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fonction pour afficher les projets filtrés dans la galerie principale
+    // Fonction pour afficher les projets filtrés
     function afficherProjetsFiltres(projetsFiltres) {
         galleryContainer.innerHTML = '';
         projetsFiltres.forEach(projet => {
@@ -123,20 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             galleryContainer.appendChild(projectElement);
         });
-
-        applyImageStyles();
-    }
-
-    // Fonction pour appliquer les styles aux images dans la galerie principale
-    function applyImageStyles() {
-        const images = galleryContainer.querySelectorAll('img');
-        images.forEach(image => {
-            image.style.width = '100%';
-            image.style.height = 'auto';
-            image.style.maxHeight = '407px';
-            image.style.objectFit = 'cover';
-            image.style.objectPosition = 'center';
-        });
     }
 
     // Fonction pour gérer l'affichage des éléments pour l'utilisateur connecté
@@ -145,13 +116,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (token) {
             editModeBanner.style.display = 'block';
             editLink.style.display = 'inline';
-            filtersContainer.style.display = 'none';
+            filtersContainer.style.display = 'none';  // Masquer les filtres après connexion
             addPhotoBtn.style.display = 'block';
+
+            // Après connexion, récupérer les projets et catégories depuis l'API
+            fetchProjetsFromAPI();  // Récupérer les projets depuis l'API après la connexion
+            fetchCategoriesFromAPI();  // Récupérer les catégories après la connexion
         } else {
             editModeBanner.style.display = 'none';
             editLink.style.display = 'none';
-            filtersContainer.style.display = 'flex';
+            filtersContainer.style.display = 'flex';  // Afficher les filtres avant la connexion
             addPhotoBtn.style.display = 'none';
+
+            // Avant connexion, récupérer les projets et les catégories
+            fetchProjetsFromAPI();  // Appel API pour récupérer les projets même avant la connexion
+            fetchCategoriesFromAPI();  // Récupérer les catégories avant la connexion
         }
     }
 
@@ -165,9 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginLogoutLink.removeAttribute('href');
             loginLogoutLink.addEventListener('click', (event) => {
                 event.preventDefault();
-                // Supprime le token de l'utilisateur pour le déconnecter
                 localStorage.removeItem('token');
-                // Redirige l'utilisateur vers la page d'accueil
                 window.location.href = 'index.html';
             });
         } else {
@@ -176,41 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fonction pour ouvrir la modale
-    function openModal() {
-        console.log('Ouverture de la modale ou activation du mode édition');
-        const modal = document.getElementById('modal');
-        if (modal) {
-            modal.style.display = 'block';
-        }
-    }
-
-    // Ajout des événements pour les boutons
-    if (openModalBtn) {
-        openModalBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            openModal();
-        });
-    }
-
-    if (editModeLink) {
-        editModeLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            console.log('Mode édition activé'); // Ajoutez ce log pour vérifier que le mode édition est activé
-            openModal(); // Ouvre la modale ou active le mode édition
-            afficherGaleriePrincipale(); // Ajoutez cette ligne pour forcer l'affichage de la galerie
-        });
-    }
-
-    // Mise à jour de la galerie principale lorsqu'un projet est ajouté ou supprimé
+    // Met à jour la galerie principale quand l'événement 'updateGallery' est détecté
     document.addEventListener('updateGallery', () => {
-        console.log('updateGallery event detected');
+        console.log('Mise à jour de la galerie principale détectée');
         allProjects = JSON.parse(localStorage.getItem('projects')) || [];
         afficherGaleriePrincipale();
     });
 
-    fetchProjetsFromAPI();
-    fetchCategoriesFromAPI();
-    toggleElementsForLoggedInUser();
-    updateLoginLogoutLink(); // Mise à jour du lien login/logout lors du chargement de la page
+    // Initialisation de la page
+    toggleElementsForLoggedInUser();  // Afficher selon l'état de connexion
+    updateLoginLogoutLink();  // Mettre à jour le lien de connexion/déconnexion
+    afficherGaleriePrincipale();
 });
