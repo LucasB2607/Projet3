@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiWorksUrl = 'http://localhost:5678/api/works';
     const apiCategoriesUrl = 'http://localhost:5678/api/categories';
 
-    let allProjects = JSON.parse(localStorage.getItem('projects')) || [];
-    let allCategories = [];
+    allProjects = [];
+    allCategories = [];
 
     // Fonction pour récupérer les projets depuis l'API
     async function fetchProjetsFromAPI() {
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`Erreur: ${response.status}`);
             }
             allProjects = await response.json();
-            localStorage.setItem('projects', JSON.stringify(allProjects)); // Sauvegarder les projets dans le localStorage
             afficherGaleriePrincipale();  // Affiche les projets dans la galerie principale
         } catch (error) {
             console.error('Erreur lors de la récupération des projets:', error);
@@ -119,19 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
             filtersContainer.style.display = 'none';  // Masquer les filtres après connexion
             addPhotoBtn.style.display = 'block';
 
-            // Après connexion, récupérer les projets et catégories depuis l'API
-            fetchProjetsFromAPI();  // Récupérer les projets depuis l'API après la connexion
-            fetchCategoriesFromAPI();  // Récupérer les catégories après la connexion
         } else {
             editModeBanner.style.display = 'none';
             editLink.style.display = 'none';
             filtersContainer.style.display = 'flex';  // Afficher les filtres avant la connexion
             addPhotoBtn.style.display = 'none';
-
-            // Avant connexion, récupérer les projets et les catégories
-            fetchProjetsFromAPI();  // Appel API pour récupérer les projets même avant la connexion
-            fetchCategoriesFromAPI();  // Récupérer les catégories avant la connexion
         }
+
+        fetchProjetsFromAPI();  // Récupérer les projets depuis l'API après la connexion
+        fetchCategoriesFromAPI();  // Récupérer les catégories après la connexion
+
     }
 
     // Fonction pour gérer le lien login/logout
@@ -156,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Met à jour la galerie principale quand l'événement 'updateGallery' est détecté
     document.addEventListener('updateGallery', () => {
         console.log('Mise à jour de la galerie principale détectée');
-        allProjects = JSON.parse(localStorage.getItem('projects')) || [];
         afficherGaleriePrincipale();
     });
 

@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePreview = document.getElementById('image-preview');
     const uploadPhotoLabel = document.querySelector('.upload-photo-label');
 
-    let allProjects = JSON.parse(localStorage.getItem('projects')) || []; // Charger les projets depuis le localStorage
-
     // Fonction pour afficher les projets dans la galerie de la modale
     function afficherProjetsDansModale() {
         const projectsGallery = document.getElementById('projects-gallery');
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (response.ok) {
                             allProjects = allProjects.filter(p => p.id !== projet.id);
-                            localStorage.setItem('projects', JSON.stringify(allProjects));
                             afficherProjetsDansModale();
                             const eventUpdateGallery = new CustomEvent('updateGallery');
                             document.dispatchEvent(eventUpdateGallery);
@@ -132,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const addedProject = await response.json();
                 allProjects.push(addedProject);
-                localStorage.setItem('projects', JSON.stringify(allProjects));
                 afficherProjetsDansModale();
                 const eventUpdateGallery = new CustomEvent('updateGallery');
                 document.dispatchEvent(eventUpdateGallery);
